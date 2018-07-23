@@ -1,7 +1,13 @@
 from os import listdir
 from sys import stderr
 from django.conf import settings as djsettings
-from django.template import add_to_builtins
+try:
+    from django.template import add_to_builtins
+except ImportError:
+    try:
+        from django.template.base import add_to_builtins
+    except ImportError:
+        from .models import add_to_builtins
 from django.utils.importlib import import_module
 from django.utils.importlib import import_module
 
